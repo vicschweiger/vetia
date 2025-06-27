@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@react-navigation/material-top-tabs": "^7.2.15",
+    "@react-navigation/native": "^7.1.11",
+    "react-native-pager-view": "^6.8.1",
+    "react-native-tab-view": "^4.1.2"
+  }
+}
