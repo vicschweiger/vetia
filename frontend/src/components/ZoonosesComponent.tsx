@@ -4,7 +4,7 @@ import { COLORS } from '../constants/theme';
 import ReplyBox from './ReplyBox';
 import SendBar from './SendBar';
 
-  export function AcademicComponent() {
+  export function ZoonosesComponent() {
     const [messages, setMessages] = useState<string[]>([]);
 
     const handleSendMessage = (message: string) => {

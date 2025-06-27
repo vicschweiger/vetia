@@ -1,8 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 import { COLORS } from '../constants/theme';
 
-import { LoginForm } from '../components/Forms/LoginForm';
 import { PersonalDataForm } from '../components/Forms/SignUpForms/PersonalDataForm';
 import { AddressDataForm } from '../components/Forms/SignUpForms/AddressDataForm';
 import { VacancyDataForm } from '../components/Forms/SignUpForms/VacancyDataForm';
@@ -18,6 +20,9 @@ const tabScreens = [
       component: PersonalDataForm,
       options: {
         title: 'Dados Pessoais',
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome6 name="person" size={25} color={color} />
+        ),
       },
     },
     {
@@ -25,6 +30,9 @@ const tabScreens = [
       component: AddressDataForm,
       options: {
         title: 'Endereço',
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome name="home" size={25} color={color} />
+        ),
       },
     },
     {
@@ -32,13 +40,19 @@ const tabScreens = [
       component: VacancyDataForm,
       options: {
         title: 'Ocupação',
-      },
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="hospital-alt" size={20} color={color} />
+        ),
+      },  
     },
             {
       name: 'Password',
       component: PasswordDataForm,
       options: {
         title: 'Senha',
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome name="lock" size={25} color={color} />
+        ),
       },
     },
             {
@@ -46,6 +60,9 @@ const tabScreens = [
       component: TermDataForm,
       options: {
         title: 'Termo de Consentimento e Políticas de Uso de Dados',
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome6 name="newspaper" size={25} color={color} />
+        ),
       },
     },
     {
@@ -53,6 +70,10 @@ const tabScreens = [
       component: WarningDataForm,
       options: {
         title: 'Aviso',
+
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome name="warning" size={20} color={color} />
+        ),
       },
     },
 ];
@@ -82,6 +103,7 @@ export default function SignUpTab() {
           options={{
             tabBarLabel: screen.options.title,
             headerTitle: screen.options.title,
+            tabBarIcon: screen.options.tabBarIcon,
           }}
         />
       ))}

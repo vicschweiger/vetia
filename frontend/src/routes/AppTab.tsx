@@ -1,11 +1,10 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { COLORS } from '../constants/theme';
 
-import { LoginForm } from '../components/Forms/LoginForm';
-import { PersonalDataForm } from '../components/Forms/SignUpForms/PersonalDataForm';
 import { AddressDataForm } from '../components/Forms/SignUpForms/AddressDataForm';
 import { VacancyDataForm } from '../components/Forms/SignUpForms/VacancyDataForm';
 import { AcademicComponent } from '../components/AcademicComponent';
+import { ZoonosesComponent } from '../components/ZoonosesComponent';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -19,7 +18,7 @@ const tabScreens = [
     },
     {
       name: 'Zoonoses',
-      component: VacancyDataForm,
+      component: ZoonosesComponent,
       options: {
         title: 'Zoonoses',
       },
@@ -51,7 +50,7 @@ export default function AppTab() {
     >
  {tabScreens.map((screen) => (
         <Tab.Screen
-          key={screen.name} // Use screen.name como key
+          key={screen.name} 
           name={screen.name}
           component={screen.component}
           options={{

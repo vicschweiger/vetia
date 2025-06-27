@@ -6,12 +6,19 @@ import React, { useState } from "react"
 import { COLORS } from "../constants/theme"
 
 import { SendButton } from "./Buttons/SendButton"
-import getMessage from "../hooks/getMessage"
-import sendMessage from "../hooks/getMessage"
 
-export default function SendBar () {
+interface SendBarProps {
+  onSendMessage: (message: string) => void;
+}
+
+export default function SendBar ({ onSendMessage }: SendBarProps) {
 
     const [message, setMessage] = useState('');
+
+    const handleSend = () => {
+      onSendMessage(message);
+      setMessage('');
+    };
 
     return (
       <View style={styles.container}>
@@ -26,9 +33,7 @@ export default function SendBar () {
             />
         </ScrollView>
         <SendButton 
-          task={sendMessage({
-            message:{message}
-          })}
+          task={handleSend}
         />
       </View>
     )
@@ -38,7 +43,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         width: '100%' ,
-        height: '10%',
+        minHeight: 50,
         gap: 10,
         alignItems: 'center',
         marginHorizontal: 30
