@@ -8,7 +8,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 
-export function TermDataForm() {
+export function TermDataForm({ formData, setFormData }) {
 
     const navigation = useNavigation();
   

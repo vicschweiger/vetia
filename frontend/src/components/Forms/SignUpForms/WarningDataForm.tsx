@@ -8,7 +8,7 @@ import { CustomText } from '../../CustomText';
 
 
 
-export function WarningDataForm() {
+export function WarningDataForm({ formData, setFormData }) {
 
     const navigation = useNavigation();
   

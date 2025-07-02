@@ -6,7 +6,7 @@ import { COLORS } from '../../../constants/theme';
 
 
 
-export function PasswordDataForm() {
+export function PasswordDataForm({ formData, setFormData }) {
 
     const navigation = useNavigation();
   

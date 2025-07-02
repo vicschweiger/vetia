@@ -7,7 +7,7 @@ import { CustomText } from '../../CustomText';
 
 
 
-export function PersonalDataForm() {
+export function PersonalDataForm({ formData, setFormData }) {
 
     const navigation = useNavigation();
   
@@ -21,10 +21,18 @@ export function PersonalDataForm() {
         <TextInput 
             style={style.input}
             placeholder='Nome'
+            value={formData.name}
+            onChangeText={(text) =>
+              setFormData((prev) => ({ ...prev, name: text }))
+            }
         />
         <TextInput
             style={style.input}
-            placeholder='Sobremome' 
+            placeholder='Sobremome'
+            value={formData.lastname}
+            onChangeText={(text) =>
+              setFormData((prev) => ({ ...prev, lastname: text }))
+            }
         />
         <TextInput
             style={style.input}

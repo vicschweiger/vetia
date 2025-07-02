@@ -6,7 +6,7 @@ import { COLORS } from '../../../constants/theme';
 
 
 
-export function VacancyDataForm() {
+export function VacancyDataForm({ formData, setFormData }) {
 
     const navigation = useNavigation();
   

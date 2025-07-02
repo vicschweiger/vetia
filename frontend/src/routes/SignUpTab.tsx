@@ -1,3 +1,4 @@
+import React, { useState, Component } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
@@ -17,7 +18,7 @@ const Tab = createBottomTabNavigator();
 const tabScreens = [
      {
       name: 'Personal Data',
-      component: PersonalDataForm,
+      Component: PersonalDataForm,
       options: {
         title: 'Dados Pessoais',
         tabBarIcon: ({ color, size }) => (
@@ -27,7 +28,7 @@ const tabScreens = [
     },
     {
       name: 'Address',
-      component: AddressDataForm,
+      Component: AddressDataForm,
       options: {
         title: 'Endereço',
         tabBarIcon: ({ color, size }) => (
@@ -37,7 +38,7 @@ const tabScreens = [
     },
     {
       name: 'Vacancy',
-      component: VacancyDataForm,
+      Component: VacancyDataForm,
       options: {
         title: 'Ocupação',
           tabBarIcon: ({ color, size }) => (
@@ -47,7 +48,7 @@ const tabScreens = [
     },
             {
       name: 'Password',
-      component: PasswordDataForm,
+      Component: PasswordDataForm,
       options: {
         title: 'Senha',
         tabBarIcon: ({ color, size }) => (
@@ -57,7 +58,7 @@ const tabScreens = [
     },
             {
       name: 'Term',
-      component: TermDataForm,
+      Component: TermDataForm,
       options: {
         title: 'Termo de Consentimento e Políticas de Uso de Dados',
         tabBarIcon: ({ color, size }) => (
@@ -67,7 +68,7 @@ const tabScreens = [
     },
     {
       name: 'Warning',
-      component: WarningDataForm,
+      Component: WarningDataForm,
       options: {
         title: 'Aviso',
 
@@ -79,6 +80,24 @@ const tabScreens = [
 ];
 
 export default function SignUpTab() {
+    const [formData, setFormData] = useState({
+    name: '',
+    lastname: '',
+    birthdate: '',
+    gender: '',
+    cep: '',
+    street: '',
+    number: '',
+    complement: '',
+    neighborhood: '',
+    city: '',
+    state: '',
+    vacancy: '',
+    password: '',
+    confirmPassword: '',
+    acceptTerms: false,
+    acceptWarning: false,
+  });
 
   return (
     <Tab.Navigator
@@ -97,15 +116,22 @@ export default function SignUpTab() {
     >
  {tabScreens.map((screen) => (
         <Tab.Screen
-          key={screen.name} // Use screen.name como key
+          key={screen.name}
           name={screen.name}
-          component={screen.component}
           options={{
             tabBarLabel: screen.options.title,
             headerTitle: screen.options.title,
             tabBarIcon: screen.options.tabBarIcon,
           }}
-        />
+        >
+          {(props) => (
+            <screen.Component
+              {...props}
+              formData={formData}
+              setFormData={setFormData}
+            />
+          )}
+        </Tab.Screen>
       ))}
     </Tab.Navigator>
   );
