@@ -1,4 +1,4 @@
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Switch, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { CustomButton } from '../../Buttons/CustomButton';
@@ -15,6 +15,25 @@ export function TermDataForm({ formData, setFormData }) {
     const handleNext = () => {
       navigation.navigate('Warning');
     }
+
+    const toggleSwitch = () => {
+        setFormData((prev) => ({
+        ...prev,
+        acceptTerms: prev.acceptTerms === false ? true : false,
+        }));
+     };
+
+    
+    const verifyTermsData = () => {
+        if (formData.acceptTerms === false) 
+          return (
+            Alert.alert('Termo Não Aceito!', 'Por favor, leia e aceite o Termo de Consentimento e Políticas de Privacidade de Dados para continuar.')
+          )
+          else
+            return (
+              handleNext()
+            )
+    }
     
 
   return (
@@ -23,15 +42,24 @@ export function TermDataForm({ formData, setFormData }) {
             style={style.title}
             value='Termos de Uso'
         />
-        <ScrollView>
+        <ScrollView style={{ width: '100%' }}>
             <CustomText
                 style={style.text}
                 value='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
             />
         </ScrollView>
+        <View style={style.switchContainer}>
+            <Switch
+                value={formData.acceptTerms}
+                onValueChange={toggleSwitch}
+                thumbColor={COLORS.primary}
+                trackColor={{ false: '#ccc', true: COLORS.primary }}
+            />
+            <Text style={{ fontWeight: 'bold' }}>Eu concordo com os termos de uso</Text>
+        </View>
         <CustomButton
             value='Proximo >'
-            route={handleNext}
+            route={verifyTermsData}
             style={{
             backgroundColor: COLORS.primary,
             alignSelf: 'flex-end',
@@ -67,5 +95,10 @@ const style = StyleSheet.create({
         paddingHorizontal: 20,
         backgroundColor: COLORS.white,
         borderRadius: 10,
-  },
+    },
+    switchContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+    },
 });
